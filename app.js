@@ -1,45 +1,3 @@
-// const sections = document.querySelectorAll('.section');
-// const sectBtns = document.querySelectorAll('.controlls');
-// const sectBtn = document.querySelectorAll('.control');
-// const allSections = document.querySelector('.main-content');
-
-
-// function PageTransitions () {
-//     //Button click active class
-//     for (let i = 0; i < sectBtn.length; i++){
-//         sectBtn[i].addEventListener('click', function() {
-//             let currentBtn = document.querySelectorAll('.active-btn'); currentBtn[0].className = currentBtn[0].className.replace('active-btn', ''); this.className += 'active-btn'
-//         })
-//     }
-//     //Sctions active class
-//     allSections.addEventListener('click', (e) => {
-//         const id = e.target.dataset.id;
-//         if (id) {
-//             //resmove selected from the other btns
-//             sectBtns.forEach((btn) => {
-//                 btn.classList.remove('active')
-//             })
-//             e.target.classList.add('active')
-
-//             //hide other sections
-//             sections.forEach((section) => {
-//             })
-            
-//             const element = document.getElementById(id);
-//             element.classList.add('active');
-//         }
-//     })
-
-//      //Togle theme
-//     const themeBtn = document.querySelector('.theme-btn');
-//     themeBtn.addEventListener('click', () => {
-//         let element = document.body
-//         element.classList.toggle('light-mode')
-//     })
-// }
-
-// PageTransitions();
-
 (function () {
     [...document.querySelectorAll(".control")].forEach(button => {
         button.addEventListener("click", function() {
@@ -53,3 +11,13 @@
         document.body.classList.toggle("light-mode");
     })
 })();
+
+const scriptURL = 'https://script.google.com/macros/s/AKfycbx4idAURiADTxFP9vr3uL-K9mIUvoBQzDGJgPKt-joVoS_2I8S7ci0KRnMbgVQtCKUxvg/exec'
+const form = document.forms['submit-to-google-sheet']
+
+form.addEventListener('submit', e => {
+  e.preventDefault()
+  fetch(scriptURL, { method: 'POST', body: new FormData(form)})
+    .then(response => console.log('Success!', response))
+    .catch(error => console.error('Error!', error.message))
+})
